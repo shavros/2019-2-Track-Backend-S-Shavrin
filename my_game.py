@@ -87,7 +87,5 @@ class Game(object):
             print('Пока :)')
 
 
-
-
 tic_toc_game = Game('My_Game')
 tic_toc_game.game_process()
