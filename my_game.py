@@ -80,6 +80,11 @@ class Game(object):
             print('Игра закончилась в ничью, {player_1} и {player_2} молодцы!'.format(player_1 = self.player_X, player_2 = self.player_O))
         else:
             print('Победил {player}, поздравляем!'.format(player = self.winner))
+        question = input('Желаете сыграть еще разок? Если да - введите да, если нет - Hет.')
+        if question == 'Да':
+            self.game_process()
+        elif question == 'Нет':
+            print('Пока :)')
 
 
 
