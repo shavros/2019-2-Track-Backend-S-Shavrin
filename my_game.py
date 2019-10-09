@@ -28,27 +28,29 @@ class Game(object):
         self.is_game_finished = False
 
     def test_of_input(self):
-        if (0 >= self.is_input >= 10) or (self.game_field[self.is_input - 1] == 'X') or (self.game_field[self.is_input - 1] == 'O') or (type(self.is_input) != int):
+        if (not self.is_input.isdigit()) or (0 >= int(self.is_input)) or (int(self.is_input) >= 10) or (self.game_field[int(self.is_input) - 1] == 'X') or (self.game_field[int(self.is_input) - 1] == 'O'):
             return False
         else:
             return True
 
     def new_turn(self, player):
         if player == self.player_X:
-            self.is_input = int(input('Введите цифру, на место которой хотите поставить крестик: '))
+            self.is_input = input('Введите цифру, на место которой хотите поставить крестик: ')
         elif player == self.player_O:
-            self.is_input = int(input('Введите цифру, на место которой хотите поставить нолик: '))
-        while not self.test_of_input():
-            self.is_input = int(input('''Пожалуйста, введите зниачение, удовлетворяющее требованиям:
+            self.is_input = input('Введите цифру, на место которой хотите поставить нолик: ')
+        s = self.test_of_input()
+        while not s:
+            self.is_input = input('''Пожалуйста, введите зниачение, удовлетворяющее требованиям:
             число от 1 до 9
             клетка не занята крестиком или ноликом
-            '''))
+            ''')
+            s = self.test_of_input()
         if player == self.player_X:
-            self.game_field[self.is_input - 1] = 'X'
-            print('{name} поставил/a крестик на клетку {number}'.format(name = player, number = self.is_input))
+            self.game_field[int(self.is_input) - 1] = 'X'
+            print('{name} поставил/a крестик на клетку {number}'.format(name = player, number = int(self.is_input)))
         elif player == self.player_O:
-            self.game_field[self.is_input - 1] = '0'
-            print('{name} поставил/a нолик на клетку {number}'.format(name=player, number=self.is_input))
+            self.game_field[int(self.is_input) - 1] = 'O'
+            print('{name} поставил/a нолик на клетку {number}'.format(name=player, number=int(self.is_input)))
         for i in range(3):
             print('|', self.game_field[0 + i * 3], '|', self.game_field[1 + i * 3], '|', self.game_field[2 + i * 3],
                   '|')
