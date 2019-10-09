@@ -4,7 +4,8 @@ class Game(object):
     player_O = None
     is_game_finished = None
     whose_turn = None
-    is_chosed = None
+    is_input = None
+    winner = None
 
     def __init__(self, name):
         self.name = name
@@ -13,6 +14,12 @@ class Game(object):
         self.game_field = list(range(1,10))
         self.player_X = input('Введите имя игрока, играющего за крестики: ')
         self.player_O = input('Введите имя игрока играющего за нолики: ')
+        f = True
+        while f:
+            if self.player_O == self.player_X:
+                self.player_O = (input('Это имя занято, введите другое: '))
+            if self.player_O != self.player_X:
+                f = False
         print('Приятной игры, думайте, будьте внимательны и побеждайте!')
         for i in range (3):
             print('|', self.game_field[0 + i * 3], '|', self.game_field[1 + i * 3], '|', self.game_field[2 + i * 3], '|')
@@ -20,27 +27,28 @@ class Game(object):
         self.whose_turn = self.player_X
         self.is_game_finished = False
 
-    def test_of_choosed(self):
-        if 9 < self.is_chosed < 1 or self.game_field[self.is_chosed - 1] == 'X' or self.game_field[self.is_chosed - 1] == 'O' or type(self.is_chosed) != int:
+    def test_of_input(self):
+        if (0 >= self.is_input >= 10) or (self.game_field[self.is_input - 1] == 'X') or (self.game_field[self.is_input - 1] == 'O') or (type(self.is_input) != int):
             return False
         else:
             return True
 
     def new_turn(self, player):
         if player == self.player_X:
-            self.is_chosed = int(input('Введите цифру, на место которой хотите поставить крестик: '))
+            self.is_input = int(input('Введите цифру, на место которой хотите поставить крестик: '))
         elif player == self.player_O:
-            self.is_chosed = int(input('Введите цифру, на место которой хотите поставить нолик: '))
-        while not self.test_of_choosed():
-            self.is_chosed = int(input('''Пожалуйста, введите зниачение, удовлетворяющее требованиям:
+            self.is_input = int(input('Введите цифру, на место которой хотите поставить нолик: '))
+        while not self.test_of_input():
+            self.is_input = int(input('''Пожалуйста, введите зниачение, удовлетворяющее требованиям:
             число от 1 до 9
-            клетка не занята крестиком или ноликом'''))
+            клетка не занята крестиком или ноликом
+            '''))
         if player == self.player_X:
-            self.game_field[self.is_chosed - 1] = 'X'
-            print('{name} поставил/a крестик на клетку {number}'.format(name = player, number = self.is_chosed))
+            self.game_field[self.is_input - 1] = 'X'
+            print('{name} поставил/a крестик на клетку {number}'.format(name = player, number = self.is_input))
         elif player == self.player_O:
-            self.game_field[self.is_chosed - 1] = '0'
-            print('{name} поставил/a нолик на клетку {number}'.format(name=player, number=self.is_chosed))
+            self.game_field[self.is_input - 1] = '0'
+            print('{name} поставил/a нолик на клетку {number}'.format(name=player, number=self.is_input))
         for i in range(3):
             print('|', self.game_field[0 + i * 3], '|', self.game_field[1 + i * 3], '|', self.game_field[2 + i * 3],
                   '|')
@@ -50,10 +58,26 @@ class Game(object):
         elif self.whose_turn == self.player_O:
             self.whose_turn = self.player_X
 
+    def finish_checking(self):
+        if self.game_field[0] == self.game_field[1] == self.game_field[2] or self.game_field[3] == self.game_field[4] == self.game_field[5] or self.game_field[6] == self.game_field[7] == self.game_field[8] or self.game_field[0] == self.game_field[3] == self.game_field[6] or self.game_field[1] == self.game_field[4] == self.game_field[7] or self.game_field[2] == self.game_field[5] == self.game_field[8] or self.game_field[0] == self.game_field[4] == self.game_field[8] or self.game_field[2] == self.game_field[4] == self.game_field[6]:
+            if self.whose_turn == self.player_X:
+                self.winner = self.player_O
+            elif self.whose_turn == self.player_O:
+                self.winner = self.player_X
+            self.is_game_finished = True
+        elif self.game_field.count('X') + self.game_field.count('O') == 9:
+            self.winner = 'draw'
+            self.is_game_finished = True
+
     def game_process(self):
         self.start_game()
         while not self.is_game_finished:
             self.new_turn(self.whose_turn)
+            self.finish_checking()
+        if self.winner == 'draw':
+            print('Игра закончилась в ничью, {player_1} и {player_2} молодцы!'.format(player_1 = self.player_X, player_2 = self.player_O))
+        else:
+            print('Победил {player}, поздравляем!'.format(player = self.winner))
 
 
 
