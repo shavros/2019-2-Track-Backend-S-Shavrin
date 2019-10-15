@@ -38,8 +38,8 @@ class Game(object):
         if (not self.is_input.isdigit()) or (int(self.is_input) <= 0) or (int(self.is_input) >= 10) or \
                 (self.game_field[int(self.is_input) - 1] == 'X') or (self.game_field[int(self.is_input) - 1] == 'O'):
             return False
-        else:
-            return True
+
+        return True
 
     def new_turn(self, player):
         '''Это метод хода, ставит в выбранную ячейку крестик или нолик'''
