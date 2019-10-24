@@ -6,3 +6,4 @@ venv/
 *.swp
 .idea/
 *.log
+prod_*.txt
