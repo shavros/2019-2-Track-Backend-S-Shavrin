@@ -1,0 +1,9 @@
+2019/10/24 02:10:02 [emerg] 11109#11109: bind() to 0.0.0.0:80 failed (13: Permission denied)
+2019/10/24 02:10:53 [emerg] 11145#11145: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2019/10/24 02:10:53 [emerg] 11145#11145: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2019/10/24 02:10:53 [emerg] 11145#11145: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2019/10/24 02:10:53 [emerg] 11145#11145: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2019/10/24 02:10:53 [emerg] 11145#11145: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2019/10/24 02:10:53 [emerg] 11145#11145: still could not bind()
+2019/10/24 02:13:12 [error] 11229#11229: *1 open() "/home/shavros/Documents/Track/2019-2-Track-Backend-S-Shavrin/nginx/public/favicon.ico" failed (2: No such file or directory), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2019/10/24 18:57:56 [error] 4171#4171: *1 open() "/home/shavros/Documents/Track/2019-2-Track-Backend-S-Shavrin/nginx/public/favicon.ico" failed (2: No such file or directory), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"

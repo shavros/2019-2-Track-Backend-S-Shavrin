@@ -1,5 +1,9 @@
+/nginx/logs/
 venv/
+*.pid
 *.pyc
 *.swo
 *.swp
 .idea/
+*.log
+prod_*.txt
