@@ -5,7 +5,7 @@ def chat_list(request, id):
     if request.method == "GET":
         try:
             chat_list = request.GET.get('chat_list')
-        except ChatList.DoesNotExist:
+        except chat_list.DoesNotExist:
             raise Http404
         return JsonResponse({'first chat': 'Lena', 'second chat': 'Kolya'})
     else:
@@ -15,7 +15,7 @@ def one_chat(request, id):
     if request.method == "GET":
         try:
             chat = request.GET.get('chat')
-        except Chat.DoesNotExist:
+        except chat.DoesNotExist:
             raise Http404
         return JsonResponse({'message': 'Hello!', 'time': '22:22'})
     else:
