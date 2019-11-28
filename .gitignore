@@ -8,4 +8,4 @@ venv/
 *.log
 prod_*.txt
 nginx/logs/
-
+local_settings.py
