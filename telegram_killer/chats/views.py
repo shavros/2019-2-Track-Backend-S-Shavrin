@@ -1,4 +1,6 @@
 from django.http import JsonResponse
+from django.http import HttpResponseNotAllowed
+from django.http import Http404
 
 # Create your views here.
 def chat_list(request, id):
@@ -6,17 +8,17 @@ def chat_list(request, id):
         try:
             chat_list = request.GET.get('chat_list')
         except chat_list.DoesNotExist:
-            raise Http404
+            return Http404
         return JsonResponse({'first chat': 'Lena', 'second chat': 'Kolya'})
     else:
-        raise Http405
+        return HttpResponseNotAllowed(['GET'])
 
 def one_chat(request, id):
     if request.method == "GET":
         try:
             chat = request.GET.get('chat')
         except chat.DoesNotExist:
-            raise Http404
+            return Http404
         return JsonResponse({'message': 'Hello!', 'time': '22:22'})
     else:
-        raise Http405
+        return HttpResponseNotAllowed(['GET'])
