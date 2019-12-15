@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.db import models
+
 # Create your models here.
 
 
@@ -22,4 +24,3 @@ class Attachment(models.Model):
     message = models.ForeignKey('Message', on_delete=models.CASCADE, verbose_name='id сообщения')
     type = models.CharField(max_length=16, verbose_name='Тип содержимого')
     url = models.URLField(verbose_name='Ссылка на вложение')
-

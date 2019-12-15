@@ -1,3 +1,5 @@
+from django.shortcuts import render
+
 from django.http import JsonResponse
 from django.http import HttpResponseNotAllowed
 from django.http import Http404
